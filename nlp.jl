@@ -89,3 +89,20 @@ function bag_of_words(corpus)
     
 end
 
+# ------------------------------------------------------------------------------------------------------------------
+
+function cosine_similarity_matrix(corpus)
+    
+    tfidf_ = tf_idf(corpus)
+
+    CS = zeros(size(tfidf_)[1], size(tfidf_)[1])
+
+    for i in 1:size(tfidf_)[1], j in 1:size(tfidf_)[1]
+        
+        CS[i,j] = dot(values(tfidf_[i, :]), values(tfidf_[j, :]))
+        
+    end
+    
+    return CS
+    
+end
